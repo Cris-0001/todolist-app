@@ -22,8 +22,14 @@ router.post("/", async (req, res)=>{
 //marcar tarea como plmletada
 
 router.put("/:id", async(req,res)=>{
-    const task = await Task.findByIdAndUpdate(req.params.id, {completed: true}, {new:true});
+    try{
+    const task = await Task.findByIdAndUpdate(req.params.id,
+        { completed: req.body.completed },
+        {new:true});
     res.json(task);
+    }catch(error){
+        res.status(500).json({error: "Error al actualizar tarea"});
+    }
 });
 
 //eliminar una tarea
