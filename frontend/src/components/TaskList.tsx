@@ -58,22 +58,24 @@ const TaskList: React.FC = () => {
         }
     };
 
-    return(
+    return (
         <div>
-            <h2>
-                Lista de tareas
-            </h2>
+            <h2>Lista de tareas</h2>
             <ul>
                 {tasks.map((task) => (
                     <li key={task._id}>
-                        {task.title}{task.completed ? '✅' : '❌'}{' '}
-                        <button onClick={()=>handleToggleComplete(task)}>
-                            {task.completed ? 'Desmarcar' : 'Completar'}
-                        </button>{" "}
-                        <button onClick={()=> handleDelete(task._id)}>Eliminar</button>
-                    </li>
-                ))}
-            </ul>
+                        <div className="content">
+                        {task.title} {task.completed ? "✅" : "❌"}
+        </div>
+        <div className="actions">
+            <button onClick={() => handleToggleComplete(task)}>
+                {task.completed ? "Desmarcar" : "Completar"}
+                    </button>
+                    <button onClick={() => handleDelete(task._id)}>Eliminar</button>
+                </div>
+            </li>
+            ))}
+        </ul>
         </div>
     );
 };
